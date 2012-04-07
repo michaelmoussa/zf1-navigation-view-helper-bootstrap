@@ -1,0 +1,4 @@
+#Fri Apr 06 18:43:05 EDT 2012
+eclipse.preferences.version=1
+include_path=0;/zf1-nav-viewhelper-bootstrap\u00055;org.zend.php.framework.CONTAINER\u00055;com.zend.php.phpunit.CONTAINER
+use_asp_tags_as_php=false
