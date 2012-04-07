@@ -103,6 +103,28 @@ class MenuTest extends PHPUnit_Framework_TestCase
     }
 
     ///////////////////////////////////////////////////////////////////////////
+
+    public function testIdAttributeMatchingHrefValueIsAppliedToFirstDropdownTriggerParentLiElement()
+    {
+        $xpath   = $this->getAsDomXpath($this->helper->render($this->getTestMenu()));
+        $result  = $xpath->query('//a[@href="#dropdown1"]/..');
+
+        $this->assertSame('dropdown1', $result->item(0)->getAttribute('id'),
+                          '#dropdown1 trigger parent <li> element is missing the "dropdown1" id!');
+    }
+
+    ///////////////////////////////////////////////////////////////////////////
+
+    public function testIdAttributeMatchingHrefValueIsAppliedToSecondDropdownTriggerParentLiElement()
+    {
+        $xpath   = $this->getAsDomXpath($this->helper->render($this->getTestMenu()));
+        $result  = $xpath->query('//a[@href="#dropdown2"]/..');
+
+        $this->assertSame('dropdown2', $result->item(0)->getAttribute('id'),
+                          '#dropdown2 trigger parent <li> element is missing the "dropdown2" id!');
+    }
+
+    ///////////////////////////////////////////////////////////////////////////
     // protected:
     ///////////////////////////////////////////////////////////////////////////
 

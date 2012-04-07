@@ -47,6 +47,7 @@ class Menu extends Zend_View_Helper_Navigation_Menu
 
         foreach ($xpath->query('//a[starts-with(@href, "#")]') as $item)
         {
+            $item->parentNode->setAttribute('id', substr($item->getAttribute('href'), 1));
             $item->parentNode->setAttribute('class', 'dropdown');
 
             $item->setAttribute('data-toggle', 'dropdown');
