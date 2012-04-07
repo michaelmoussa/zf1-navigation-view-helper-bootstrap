@@ -49,12 +49,12 @@ class MenuTest extends PHPUnit_Framework_TestCase
 
     public function testDropdownToggleClassIsAppliedToTheFirstDropdownTrigger()
     {
-        $xpath  = $this->getAsDomXpath($this->helper->render($this->getTestMenu()));
-        $result = $xpath->query('//a[@href="#dropdown1"]');
+        $xpath   = $this->getAsDomXpath($this->helper->render($this->getTestMenu()));
+        $result  = $xpath->query('//a[@href="#dropdown1"]');
+        $classes = explode(' ', $result->item(0)->getAttribute('class'));
 
-        $this->assertSame('dropdown-toggle', $result->item(0)->getAttribute('class'),
+        $this->assertSame('dropdown-toggle', $classes[1],
                           '#dropdown1 trigger is missing the "dropdown-toggle" class!');
-
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -66,6 +66,18 @@ class MenuTest extends PHPUnit_Framework_TestCase
 
         $this->assertSame('dropdown-toggle', $result->item(0)->getAttribute('class'),
                           '#dropdown2 trigger is missing the "dropdown-toggle" class!');
+    }
+
+    ///////////////////////////////////////////////////////////////////////////
+
+    public function testExistingDropdownTriggerClassesAreNotClobbered()
+    {
+        $xpath   = $this->getAsDomXpath($this->helper->render($this->getTestMenu()));
+        $result  = $xpath->query('//a[@href="#dropdown1"]');
+        $classes = explode(' ', $result->item(0)->getAttribute('class'));
+
+        $this->assertSame('dont-clobber-me', $classes[0],
+                          'Existing dropdown trigger class was clobbered!');
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -105,7 +117,8 @@ class MenuTest extends PHPUnit_Framework_TestCase
                                                           'uri'   => '/page1')),
                        new Zend_Navigation_Page_Uri(array('label' => 'Page 2',
                                                           'uri'   => '/page2')),
-                       new Zend_Navigation_Page_Uri(array('label' => 'Dropdown Trigger 1',
+                       new Zend_Navigation_Page_Uri(array('class' => 'dont-clobber-me',
+                                                          'label' => 'Dropdown Trigger 1',
                                                           'pages' => $dropdownPages[0],
                                                           'uri'   => '#dropdown1')),
                        new Zend_Navigation_Page_Uri(array('label' => 'Dropdown Trigger 2',
