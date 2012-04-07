@@ -16,17 +16,18 @@ use DOMDocument,
 class Menu extends Zend_View_Helper_Navigation_Menu
 {
     /**
-     * Intercept render() call and apply custom Twitter Bootstrap class/id
+     * Intercept renderMenu() call and apply custom Twitter Bootstrap class/id
      * attributes.
      *
-     * @see   Zend_View_Helper_Navigation_Menu::render()
+     * @see   Zend_View_Helper_Navigation_Menu::renderMenu()
      * @param Zend_Navigation_Container $container (Optional) The navigation container.
+     * @param array                     $options   (Optional) Options for controlling rendering.
      *
      * @return string
      */
-    public function render(Zend_Navigation_Container $container = null)
+    public function renderMenu(Zend_Navigation_Container $container = null, array $options = array())
     {
-        return $this->applyBootstrapClassesAndIds(parent::render($container));
+        return $this->applyBootstrapClassesAndIds(parent::renderMenu($container, $options));
     }
 
     ///////////////////////////////////////////////////////////////////////////
