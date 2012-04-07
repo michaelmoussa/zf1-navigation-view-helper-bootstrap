@@ -60,6 +60,11 @@ class Menu extends Zend_View_Helper_Navigation_Menu
             {
                 $item->setAttribute('class', 'dropdown-toggle');
             }
+
+            $carat = $domDoc->createElement('b');
+            $carat->setAttribute('class', 'carat');
+
+            $item->appendChild($carat);
         }
 
         return $domDoc->saveHTML();

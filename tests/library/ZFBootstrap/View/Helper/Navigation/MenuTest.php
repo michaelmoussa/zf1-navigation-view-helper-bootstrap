@@ -17,10 +17,22 @@ use DOMDocument,
  */
 class MenuTest extends PHPUnit_Framework_TestCase
 {
-    public function testMenuHelperExtendsZendMenuViewHelperClass()
+    public function testCaratElementIsAddedAsChildOfTheFirstDropdownTrigger()
     {
-        $this->assertInstanceOf('Zend_View_Helper_Navigation_Menu', $this->helper,
-                                'Menu helper should extend Zend_View_Helper_Navigation_Menu!');
+        $xpath  = $this->getAsDomXpath($this->helper->render($this->getTestMenu()));
+        $result = $xpath->query('//a[@href="#dropdown1"]/b[@class="carat"]');
+
+        $this->assertSame(1, $result->length, '<b class="carat"> for first dropdown trigger not found!');
+    }
+
+    ///////////////////////////////////////////////////////////////////////////
+
+    public function testCaratElementIsAddedAsChildOfTheSecondDropdownTrigger()
+    {
+        $xpath  = $this->getAsDomXpath($this->helper->render($this->getTestMenu()));
+        $result = $xpath->query('//a[@href="#dropdown2"]/b[@class="carat"]');
+
+        $this->assertSame(1, $result->length, '<b class="carat"> for second dropdown trigger not found!');
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -122,6 +134,14 @@ class MenuTest extends PHPUnit_Framework_TestCase
 
         $this->assertSame('dropdown2', $result->item(0)->getAttribute('id'),
                           '#dropdown2 trigger parent <li> element is missing the "dropdown2" id!');
+    }
+
+    ///////////////////////////////////////////////////////////////////////////
+
+    public function testMenuHelperExtendsZendMenuViewHelperClass()
+    {
+        $this->assertInstanceOf('Zend_View_Helper_Navigation_Menu', $this->helper,
+                                'Menu helper should extend Zend_View_Helper_Navigation_Menu!');
     }
 
     ///////////////////////////////////////////////////////////////////////////
