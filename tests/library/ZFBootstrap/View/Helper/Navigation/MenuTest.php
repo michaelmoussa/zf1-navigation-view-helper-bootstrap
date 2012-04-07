@@ -17,22 +17,22 @@ use DOMDocument,
  */
 class MenuTest extends PHPUnit_Framework_TestCase
 {
-    public function testCaratElementIsAddedAsChildOfTheFirstDropdownTrigger()
+    public function testCaretElementIsAddedAsChildOfTheFirstDropdownTrigger()
     {
         $xpath  = $this->getAsDomXpath($this->helper->render($this->getTestMenu()));
-        $result = $xpath->query('//a[@href="#dropdown1"]/b[@class="carat"]');
+        $result = $xpath->query('//a[@href="#dropdown1"]/b[@class="caret"]');
 
-        $this->assertSame(1, $result->length, '<b class="carat"> for first dropdown trigger not found!');
+        $this->assertSame(1, $result->length, '<b class="caret"> for first dropdown trigger not found!');
     }
 
     ///////////////////////////////////////////////////////////////////////////
 
-    public function testCaratElementIsAddedAsChildOfTheSecondDropdownTrigger()
+    public function testCaretElementIsAddedAsChildOfTheSecondDropdownTrigger()
     {
         $xpath  = $this->getAsDomXpath($this->helper->render($this->getTestMenu()));
-        $result = $xpath->query('//a[@href="#dropdown2"]/b[@class="carat"]');
+        $result = $xpath->query('//a[@href="#dropdown2"]/b[@class="caret"]');
 
-        $this->assertSame(1, $result->length, '<b class="carat"> for second dropdown trigger not found!');
+        $this->assertSame(1, $result->length, '<b class="caret"> for second dropdown trigger not found!');
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -230,7 +230,6 @@ class MenuTest extends PHPUnit_Framework_TestCase
         return new Zend_Navigation(array(new Zend_Navigation_Page_Uri(array('label' => 'Root',
                                                                             'pages' => $pages,
                                                                             'uri'   => '/'))));
-
     }
 
     ///////////////////////////////////////////////////////////////////////////
