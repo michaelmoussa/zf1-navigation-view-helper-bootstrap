@@ -27,11 +27,7 @@ class MenuTest extends PHPUnit_Framework_TestCase
 
     public function testDropdownClassIsAppliedToFirstDropdownTriggerParentLiElement()
     {
-        $domDoc = new DOMDocument();
-        $domDoc->loadHTML($this->helper->render($this->getTestMenu()));
-
-        $xpath = new DOMXPath($domDoc);
-
+        $xpath  = $this->getAsDomXpath($this->helper->render($this->getTestMenu()));
         $result = $xpath->query('//a[@href="#dropdown1"]/..');
 
         $this->assertSame('dropdown', $result->item(0)->getAttribute('class'),
@@ -39,7 +35,33 @@ class MenuTest extends PHPUnit_Framework_TestCase
     }
 
     ///////////////////////////////////////////////////////////////////////////
+
+    public function testDropdownClassIsAppliedToSecondDropdownTriggerParentLiElement()
+    {
+        $xpath  = $this->getAsDomXpath($this->helper->render($this->getTestMenu()));
+        $result = $xpath->query('//a[@href="#dropdown2"]/..');
+
+        $this->assertSame('dropdown', $result->item(0)->getAttribute('class'),
+                          '#dropdown2 trigger parent <LI> element is missing the "dropdown" class!');
+    }
+
+    ///////////////////////////////////////////////////////////////////////////
     // protected:
+    ///////////////////////////////////////////////////////////////////////////
+
+    /**
+     * Returns the supplied HTML as a DOMXPath object.
+     *
+     * @return DOMDOcument
+     */
+    protected function getAsDomXpath($html)
+    {
+        $domDoc = new DOMDocument();
+        $domDoc->loadHTML($html);
+
+        return new DOMXPath($domDoc);
+    }
+
     ///////////////////////////////////////////////////////////////////////////
 
     /**
