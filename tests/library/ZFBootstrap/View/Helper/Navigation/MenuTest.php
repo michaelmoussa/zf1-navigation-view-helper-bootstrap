@@ -59,6 +59,21 @@ class MenuTest extends PHPUnit_Framework_TestCase
 
     ///////////////////////////////////////////////////////////////////////////
 
+    public function testDropdownClassesAreNotAppliedIfNoUlElementForDropdownMenuIsFound()
+    {
+        $xpath  = $this->getAsDomXpath($this->helper->render($this->getTestMenu()));
+        $result = $xpath->query('//a[@href="#i-am-not-a-dropdown"]');
+
+        $this->assertSame('', $result->item(0)->getAttribute('data-toggle'),
+                          '#i-am-not-a-dropdown should not have a "data-toggle"');
+
+        $result = $xpath->query('..', $result->item(0));
+        $this->assertSame('', $result->item(0)->getAttribute('class'),
+                          '#i-am-not-a-dropdown parent <LI> element should not have a class applied!');
+    }
+
+    ///////////////////////////////////////////////////////////////////////////
+
     public function testDropdownDataToggleIsAppliedToFirstDropdownTrigger()
     {
         $xpath  = $this->getAsDomXpath($this->helper->render($this->getTestMenu()));
@@ -209,7 +224,9 @@ class MenuTest extends PHPUnit_Framework_TestCase
                                                           'uri'   => '#dropdown1')),
                        new Zend_Navigation_Page_Uri(array('label' => 'Dropdown Trigger 2',
                                                           'pages' => $dropdownPages[1],
-                                                          'uri'   => '#dropdown2')));
+                                                          'uri'   => '#dropdown2')),
+                       new Zend_Navigation_Page_Uri(array('label' => 'I am not a dropdown',
+                                                          'uri'   => '#i-am-not-a-dropdown')));
         return new Zend_Navigation(array(new Zend_Navigation_Page_Uri(array('label' => 'Root',
                                                                             'pages' => $pages,
                                                                             'uri'   => '/'))));

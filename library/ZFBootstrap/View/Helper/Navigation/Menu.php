@@ -47,27 +47,32 @@ class Menu extends Zend_View_Helper_Navigation_Menu
 
         foreach ($xpath->query('//a[starts-with(@href, "#")]') as $item)
         {
-            $ul = $xpath->query('../ul', $item)->item(0);
-            $ul->setAttribute('class', 'dropdown-menu');
+            $result = $xpath->query('../ul', $item);
 
-            $item->parentNode->setAttribute('id', substr($item->getAttribute('href'), 1));
-            $item->parentNode->setAttribute('class', 'dropdown');
-
-            $item->setAttribute('data-toggle', 'dropdown');
-
-            if (($existingClass = $item->getAttribute('class')) !== '')
+            if ($result->length === 1)
             {
-                $item->setAttribute('class', $item->getAttribute('class') . ' dropdown-toggle');
-            }
-            else
-            {
-                $item->setAttribute('class', 'dropdown-toggle');
-            }
+                $ul = $result->item(0);
+                $ul->setAttribute('class', 'dropdown-menu');
 
-            $carat = $domDoc->createElement('b');
-            $carat->setAttribute('class', 'carat');
+                $item->parentNode->setAttribute('id', substr($item->getAttribute('href'), 1));
+                $item->parentNode->setAttribute('class', 'dropdown');
 
-            $item->appendChild($carat);
+                $item->setAttribute('data-toggle', 'dropdown');
+
+                if (($existingClass = $item->getAttribute('class')) !== '')
+                {
+                    $item->setAttribute('class', $item->getAttribute('class') . ' dropdown-toggle');
+                }
+                else
+                {
+                    $item->setAttribute('class', 'dropdown-toggle');
+                }
+
+                $carat = $domDoc->createElement('b');
+                $carat->setAttribute('class', 'carat');
+
+                $item->appendChild($carat);
+            }
         }
 
         return $domDoc->saveHTML();
