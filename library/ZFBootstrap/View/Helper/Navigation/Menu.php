@@ -49,6 +49,8 @@ class Menu extends Zend_View_Helper_Navigation_Menu
         {
             $item->parentNode->setAttribute('class', 'dropdown');
 
+            $item->setAttribute('data-toggle', 'dropdown');
+
             if (($existingClass = $item->getAttribute('class')) !== '')
             {
                 $item->setAttribute('class', $item->getAttribute('class') . ' dropdown-toggle');

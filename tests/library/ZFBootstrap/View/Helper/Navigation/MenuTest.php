@@ -47,6 +47,28 @@ class MenuTest extends PHPUnit_Framework_TestCase
 
     ///////////////////////////////////////////////////////////////////////////
 
+    public function testDropdownDataToggleIsAppliedToFirstDropdownTrigger()
+    {
+        $xpath  = $this->getAsDomXpath($this->helper->render($this->getTestMenu()));
+        $result = $xpath->query('//a[@href="#dropdown1"]');
+
+        $this->assertSame('dropdown', $result->item(0)->getAttribute('data-toggle'),
+                          '#dropdown1 trigger is missing the "dropdown" data-toggle attribute!');
+    }
+
+    ///////////////////////////////////////////////////////////////////////////
+
+    public function testDropdownDataToggleIsAppliedToSecondDropdownTrigger()
+    {
+        $xpath  = $this->getAsDomXpath($this->helper->render($this->getTestMenu()));
+        $result = $xpath->query('//a[@href="#dropdown2"]');
+
+        $this->assertSame('dropdown', $result->item(0)->getAttribute('data-toggle'),
+                          '#dropdown2 trigger is missing the "dropdown" data-toggle attribute!');
+    }
+
+    ///////////////////////////////////////////////////////////////////////////
+
     public function testDropdownToggleClassIsAppliedToTheFirstDropdownTrigger()
     {
         $xpath   = $this->getAsDomXpath($this->helper->render($this->getTestMenu()));
