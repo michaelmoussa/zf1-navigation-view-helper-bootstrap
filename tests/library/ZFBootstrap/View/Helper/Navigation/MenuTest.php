@@ -197,7 +197,8 @@ class MenuTest extends PHPUnit_Framework_TestCase
     /**
      * Returns the supplied HTML as a DOMXPath object.
      *
-     * @return DOMDOcument
+     * @param  string $html The HTML
+     * @return DOMDocument
      */
     protected function getAsDomXpath($html)
     {
