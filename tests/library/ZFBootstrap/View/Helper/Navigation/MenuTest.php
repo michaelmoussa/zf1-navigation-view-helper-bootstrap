@@ -37,6 +37,19 @@ class MenuTest extends PHPUnit_Framework_TestCase
 
     ///////////////////////////////////////////////////////////////////////////
 
+    public function testCharactersAreEncodedProperly()
+    {
+        $menu = $this->getTestMenu();
+        $menu->findOneBy('label', 'Root')->setLabel('áéíóú');
+
+        $xpath  = $this->getAsDomXpath($this->helper->render($menu));
+        $result = $xpath->query('//a[@href="/"]');
+
+        $this->assertSame('áéíóú', $result->item(0)->textContent, 'Characters were not properly encoded!');
+    }
+
+    ///////////////////////////////////////////////////////////////////////////
+
     public function testDropdownClassIsAppliedToFirstDropdownTriggerParentLiElement()
     {
         $xpath  = $this->getAsDomXpath($this->helper->render($this->getTestMenu()));
@@ -202,8 +215,8 @@ class MenuTest extends PHPUnit_Framework_TestCase
      */
     protected function getAsDomXpath($html)
     {
-        $domDoc = new DOMDocument();
-        $domDoc->loadHTML($html);
+        $domDoc = new DOMDocument('1.0', 'utf-8');
+        $domDoc->loadHTML('<?xml version="1.0" encoding="utf-8"?>' . $html);
 
         return new DOMXPath($domDoc);
     }

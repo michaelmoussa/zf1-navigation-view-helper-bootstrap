@@ -41,8 +41,8 @@ class Menu extends Zend_View_Helper_Navigation_Menu
      */
     protected function applyBootstrapClassesAndIds($html)
     {
-        $domDoc = new DOMDocument();
-        $domDoc->loadHTML($html);
+        $domDoc = new DOMDocument('1.0', 'utf-8');
+        $domDoc->loadXML('<?xml version="1.0" encoding="utf-8"?>' . $html);
 
         $xpath = new DOMXPath($domDoc);
 
@@ -76,6 +76,6 @@ class Menu extends Zend_View_Helper_Navigation_Menu
             }
         }
 
-        return $domDoc->saveXML($xpath->query('/html/body/ul')->item(0));
+        return $domDoc->saveXML($xpath->query('/ul')->item(0));
     }
 }
