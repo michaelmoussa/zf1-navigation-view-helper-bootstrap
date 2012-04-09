@@ -76,6 +76,6 @@ class Menu extends Zend_View_Helper_Navigation_Menu
             }
         }
 
-        return $domDoc->saveHTML($xpath->query('/html/body/ul')->item(0));
+        return $domDoc->saveXML($xpath->query('/html/body/ul')->item(0));
     }
 }
