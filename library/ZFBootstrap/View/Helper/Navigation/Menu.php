@@ -68,6 +68,10 @@ class Menu extends Zend_View_Helper_Navigation_Menu
                 {
                     $item->setAttribute('class', 'dropdown-toggle');
                 }
+                
+                $space = $domDoc->createTextNode(' ');
+
+                $item->appendChild($space);
 
                 $caret = $domDoc->createElement('b', '');
                 $caret->setAttribute('class', 'caret');
