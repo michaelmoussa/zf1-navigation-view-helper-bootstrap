@@ -55,8 +55,17 @@ class Menu extends Zend_View_Helper_Navigation_Menu
                 $ul = $result->item(0);
                 $ul->setAttribute('class', 'dropdown-menu');
 
-                $item->parentNode->setAttribute('id', substr($item->getAttribute('href'), 1));
-                $item->parentNode->setAttribute('class', 'dropdown');
+                $li = $item->parentNode;
+                $li->setAttribute('id', substr($item->getAttribute('href'), 1));
+                
+                if (($existingClass = $li->getAttribute('class')) !== '')
+                {
+                    $li->setAttribute('class', $existingClass . ' dropdown');
+                }
+                else
+                {
+                    $li->setAttribute('class', 'dropdown');
+                }
 
                 $item->setAttribute('data-toggle', 'dropdown');
 
@@ -68,6 +77,10 @@ class Menu extends Zend_View_Helper_Navigation_Menu
                 {
                     $item->setAttribute('class', 'dropdown-toggle');
                 }
+                
+                $space = $domDoc->createTextNode(' ');
+
+                $item->appendChild($space);
 
                 $caret = $domDoc->createElement('b', '');
                 $caret->setAttribute('class', 'caret');
