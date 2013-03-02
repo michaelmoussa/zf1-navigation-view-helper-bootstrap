@@ -1,5 +1,5 @@
 {
-   "name":"kdubuc/zf1-navigation-view-helper-bootstrap",
+   "name":"mmoussa/zf1-navigation-view-helper-bootstrap",
    "description":"A modified Zend_View_Helper_Navigation_Menu object that automatically applies the necessary id/class/data-toggle attributes to render dropdown menus compatible with Twitter Bootstrap.",
    "keywords":[
       "zend",
