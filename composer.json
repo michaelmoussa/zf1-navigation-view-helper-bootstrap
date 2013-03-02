@@ -1,33 +1,33 @@
 {
-   "name":"mmoussa/zf1-navigation-view-helper-bootstrap",
-   "description":"A modified Zend_View_Helper_Navigation_Menu object that automatically applies the necessary id/class/data-toggle attributes to render dropdown menus compatible with Twitter Bootstrap.",
-   "keywords":[
-      "zend",
-      "zend navigation",
-      "zend navigation menu",
-      "twitter",
-      "bootstrap",
-      "twitter bootstrap"
-   ],
-   "type":"library",
-   "homepage":"https://github.com/mmoussa/zf1-navigation-view-helper-bootstrap",
-   "version":"dev-master",
-   "license":"MIT",
-   "authors":[
-      {
-         "name":"Michael Moussa",
-         "email":"michael.moussa@gmail.com"
-      }
-   ],
-   "require":{
-      "php":">=5.2.4"
+    "name": "mmoussa/zf1-navigation-view-helper-bootstrap",
+    "description": "A modified Zend_View_Helper_Navigation_Menu object that automatically applies the necessary id/class/data-toggle attributes to render dropdown menus compatible with Twitter Bootstrap.",
+    "keywords": [
+        "zend",
+        "zend navigation",
+        "zend navigation menu",
+        "twitter",
+        "bootstrap",
+        "twitter bootstrap"
+    ],
+    "type": "library",
+    "homepage": "https://github.com/mmoussa/zf1-navigation-view-helper-bootstrap",
+    "version": "dev-master",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Michael Moussa",
+            "email": "michael.moussa@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.2.4"
     },
-    "autoload":{
-        "psr-0":{
-            "ZFBootstrap":"library"
+    "autoload": {
+        "psr-0": {
+            "ZFBootstrap": "library"
         }
     },
     "include-path": [
-       ""
+        ""
     ]
 }
