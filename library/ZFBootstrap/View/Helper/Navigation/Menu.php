@@ -89,6 +89,6 @@ class Menu extends Zend_View_Helper_Navigation_Menu
             }
         }
 
-        return $domDoc->saveXML($xpath->query('/ul')->item(0));
+        return $domDoc->saveXML($xpath->query('/ul')->item(0), LIBXML_NOEMPTYTAG);
     }
 }
