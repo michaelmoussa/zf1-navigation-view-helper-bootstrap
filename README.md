@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/michaelmoussa/zf1-navigation-view-helper-bootstrap.png?branch=master)](https://travis-ci.org/michaelmoussa/zf1-navigation-view-helper-bootstrap)
 ## Description
 
 This Zend Framework View Helper extends the existing **Zend_View_Helper_Navigation_Menu** view helper to render dropdown menus compatible with the format required in [Twitter Bootstrap](http://twitter.github.com/bootstrap/javascript.html#dropdowns). The automatic dropdown functionality requires adding various **class**, **id**, and **data-toggle** attributes, which Zend Framework's menu view helper doesn't natively support.
