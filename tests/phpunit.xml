@@ -13,4 +13,9 @@
     <logging>
         <log type="coverage-html" target="./coverage-html" charset="UTF-8" yui="true" highlight="true" />
     </logging>
+    <testsuites>
+        <testsuite name="zf1-navigation-view-helper-bootstrap">
+            <directory>./library</directory>
+        </testsuite>
+    </testsuites>
 </phpunit>
