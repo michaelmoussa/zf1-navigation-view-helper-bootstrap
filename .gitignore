@@ -1,3 +1,4 @@
 build/
 .idea/
 tests/coverage-html
+tests/phpunit.xml
