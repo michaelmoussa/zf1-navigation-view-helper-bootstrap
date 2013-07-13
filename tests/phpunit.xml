@@ -12,6 +12,7 @@
     </filter>
     <logging>
         <log type="coverage-html" target="./coverage-html" charset="UTF-8" yui="true" highlight="true" />
+        <log type="coverage-clover" target="./clover.xml" />
     </logging>
     <testsuites>
         <testsuite name="zf1-navigation-view-helper-bootstrap">

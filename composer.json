@@ -23,7 +23,8 @@
         "php": ">=5.2.4"
     },
     "require-dev": {
-        "breerly/zf1": "1.11.*"
+        "breerly/zf1": "1.11.*",
+        "satooshi/php-coveralls": "dev-master"
     },
     "autoload": {
         "psr-0": {
