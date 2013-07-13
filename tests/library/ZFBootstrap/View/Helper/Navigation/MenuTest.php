@@ -55,7 +55,7 @@ class MenuTest extends PHPUnit_Framework_TestCase
         $xpath  = $this->getAsDomXpath($this->helper->render($this->getTestMenu()));
         $result = $xpath->query('//a[@href="#dropdown1"]/..');
 
-        $this->assertSame('dropdown', $result->item(0)->getAttribute('class'),
+        $this->assertContains('dropdown', $result->item(0)->getAttribute('class'),
                           '#dropdown1 trigger parent <LI> element is missing the "dropdown" class!');
     }
 
@@ -68,6 +68,18 @@ class MenuTest extends PHPUnit_Framework_TestCase
 
         $this->assertSame('dropdown', $result->item(0)->getAttribute('class'),
                           '#dropdown2 trigger parent <LI> element is missing the "dropdown" class!');
+    }
+
+    ///////////////////////////////////////////////////////////////////////////
+
+    public function testExistingDropdownClassesAreNotClobberedOnParentLiElement()
+    {
+        $xpath   = $this->getAsDomXpath($this->helper->render($this->getTestMenu()));
+        $result  = $xpath->query('//a[@href="#dropdown1"]/..');
+        $classes = explode(' ', $result->item(0)->getAttribute('class'));
+
+        $this->assertSame('active', $classes[0],
+                          'Existing dropdown trigger class was clobbered!');
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -154,7 +166,7 @@ class MenuTest extends PHPUnit_Framework_TestCase
 
     ///////////////////////////////////////////////////////////////////////////
 
-    public function testExistingDropdownTriggerClassesAreNotClobbered()
+    public function testExistingDropdownToggleClassesAreNotClobbered()
     {
         $xpath   = $this->getAsDomXpath($this->helper->render($this->getTestMenu()));
         $result  = $xpath->query('//a[@href="#dropdown1"]');
@@ -230,8 +242,9 @@ class MenuTest extends PHPUnit_Framework_TestCase
      */
     protected function getTestMenu()
     {
-        $dropdownPages = array(array(new Zend_Navigation_Page_Uri(array('label' => 'Subpage 1-1',
-                                                                        'uri'   => '/subpage1-1')),
+        $dropdownPages = array(array(new Zend_Navigation_Page_Uri(array('active' => true,
+                                                                        'label'  => 'Subpage 1-1',
+                                                                        'uri'    => '/subpage1-1')),
                                      new Zend_Navigation_Page_Uri(array('label' => 'Subpage 1-2',
                                                                         'uri'   => '/subpage1-2'))),
                                array(new Zend_Navigation_Page_Uri(array('label' => 'Subpage 2-1',
