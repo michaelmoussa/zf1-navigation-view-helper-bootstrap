@@ -10,6 +10,10 @@
             <directory suffix=".php">../library</directory>
         </whitelist>
     </filter>
+    <logging>
+        <log type="coverage-html" target="../build/logs/coverage-html" charset="UTF-8" yui="true" highlight="true" />
+        <log type="coverage-clover" target="../build/logs/clover.xml" />
+    </logging>
     <testsuites>
         <testsuite name="zf1-navigation-view-helper-bootstrap">
             <directory>./library</directory>

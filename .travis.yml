@@ -8,6 +8,8 @@ php:
 
 before_script:
     - composer install --dev --no-interaction
+    - mkdir -p build/logs
+    - mv tests/phpunit.xml.ci tests/phpunit.xml
 
 script:
     - phpunit --configuration tests/phpunit.xml
